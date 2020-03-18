@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class MovieType(models.Model):
     genrename=models.CharField(max_length=255)
-    genredesc=models.TextField (null=True, blank=True)
+    genredesc=models.TextField(null=True, blank=True)
 
     def __str_(self):
         return self.genrename
@@ -32,7 +32,7 @@ class Theater(models.Model):
 class Review(models.Model):
     revtitle=models.CharField(max_length=255)
     revdate=models.DateField()
-    movietitle=models.ForeignKey(Movie, on_delete=models.DO_NOTHING)
+    movietitle=models.ForeignKey("Movie", on_delete=models.DO_NOTHING)
     theatertitle=models.ForeignKey(Theater, on_delete=models.DO_NOTHING)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
     RATINGS = (
@@ -60,13 +60,13 @@ class Review(models.Model):
 
 class Movie(models.Model):
     moviename=models.CharField(max_length=255)
-    genrename=models.ManyToManyField(MovieType)
-    #genrename=models.ForeignKey(MovieType, on_delete=models.DO_NOTHING)
-    theater=models.ManyToManyField(Theater)
-    #theater=models.ForeignKey('Theater', on_delete=models.DO_NOTHING)
+    #movietype=models.ManyToManyField(MovieType)
+    movietype=models.ForeignKey(MovieType, on_delete=models.DO_NOTHING)
+    #theater=models.ManyToManyField(Theater)
+    theater=models.ForeignKey(Theater, on_delete=models.DO_NOTHING)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    stars=models.ManyToManyField(Review)
-    #stars=models.ForeignKey(Review, on_delete=models.DO_NOTHING)
+    #stars=models.ManyToManyField(Review)
+    rating=models.ForeignKey(Review, on_delete=models.DO_NOTHING)
     moviedesc=models.TextField(null=True, blank=True)
 
     def __str__(self):
