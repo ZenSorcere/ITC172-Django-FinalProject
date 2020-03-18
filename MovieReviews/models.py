@@ -60,13 +60,10 @@ class Review(models.Model):
 
 class Movie(models.Model):
     moviename=models.CharField(max_length=255)
-    #movietype=models.ManyToManyField(MovieType)
     movietype=models.ForeignKey(MovieType, on_delete=models.DO_NOTHING)
-    #theater=models.ManyToManyField(Theater)
     theater=models.ForeignKey(Theater, on_delete=models.DO_NOTHING)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    #stars=models.ManyToManyField(Review)
-    rating=models.ForeignKey(Review, on_delete=models.DO_NOTHING)
+    rating=models.ForeignKey(Review, on_delete=models.DO_NOTHING, null=True, blank=True)
     moviedesc=models.TextField(null=True, blank=True)
 
     def __str__(self):

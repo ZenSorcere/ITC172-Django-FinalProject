@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ movie.moviename }}</h2>
+<p>Theater: {{ movie.theatername }} </p>
+<p>Rating: {{ reviews.rating }} </p>
+<p>Reviewer: {{ movie.user }} </p>
+<p>Review: {{ reviews.revdesc }} </p>
+
+
+{% endblock %}
