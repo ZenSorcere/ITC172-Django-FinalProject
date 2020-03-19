@@ -61,9 +61,9 @@ class Review(models.Model):
 class Movie(models.Model):
     moviename=models.CharField(max_length=255)
     movietype=models.ForeignKey(MovieType, on_delete=models.DO_NOTHING)
-    theater=models.ForeignKey(Theater, on_delete=models.DO_NOTHING)
+    theater=models.ManyToManyField(Theater, null=True, blank=True)
+    #theater=models.ForeignKey(Theater, on_delete=models.DO_NOTHING, null=True, blank=True)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    rating=models.ForeignKey(Review, on_delete=models.DO_NOTHING, null=True, blank=True)
     moviedesc=models.TextField(null=True, blank=True)
 
     def __str__(self):
